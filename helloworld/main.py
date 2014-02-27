@@ -18,8 +18,15 @@ import webapp2
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        nome=self.request.get('nome')
+        self.response.write('Hello world %s!'%nome)
+
+class MeuHandler(webapp2.RequestHandler):
+    def get(self):
+        self.redirect('/outro')
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/meu', MeuHandler)
+
 ], debug=True)
